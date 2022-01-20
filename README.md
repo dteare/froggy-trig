@@ -4,4 +4,4 @@ Visualization of a Grade 11 trig assignment Abby brought to me last week about a
 
 ![Abby's math homework](ferris-wheel-math.png)
 
-While we got the right answer, our trig foundation felt shaky so I thought we'd simulate it. Seeing Froggy on a ferris wheel with the Cos&Sin shown will help solidify our foundation and get us ready for grade 8! 🙌
+While we got the right answer, our trig foundation felt shaky so I thought we'd simulate it. Seeing Froggy on a ferris wheel with the Cos&Sin shown will help solidify our foundation and get us ready for grade 12! 🙌 And remind me how it works when Jack gets to the 11th grade. 🙂
