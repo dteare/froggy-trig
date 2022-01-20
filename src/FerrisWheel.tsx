@@ -84,7 +84,7 @@ function drawFerrisWheel(rotateAngle: number) {
         ctx.arc(points[i].x, points[i].y + cellDis, 6 * r, 0, 2 * Math.PI);
 
         if (i == 1) {
-          ctx.font = '35px Arial';
+          ctx.font = '25px Arial';
           ctx.fillText('🐸', points[i].x, points[i].y + cellDis);
         }
       }
@@ -154,5 +154,4 @@ function drawFerrisWheel(rotateAngle: number) {
 
   update();
   draw();
-  debugger;
 }

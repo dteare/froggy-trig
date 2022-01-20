@@ -25,9 +25,10 @@ function App() {
   };
 
   const next = () => {
-    console.log('@next');
+    console.log(`@next (${isRunning} / ${isRunningRef.current})`);
 
-    if (!isRunningRef.current) return;
+    // Never sees the updated value to isRunning due to the closure, but the reference doesn't help... 🤔
+    // if (!isRunningRef.current) return;
 
     let t = timeRef.current;
     t += 1 / 10;
