@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import logo from './logo.svg';
+import { TrigViz } from './TrigViz';
 import './App.css';
 
 function App() {
@@ -49,6 +49,9 @@ function App() {
     setInterval(next, 1000);
   }, []);
 
+  let step = 360 / 60; // 6 degrees per second
+  let angle = (time % 60) * step;
+
   return (
     <div className="App">
       <header className="App-header">
@@ -69,6 +72,8 @@ function App() {
           <li>Max height: {stats.max}</li>
           <li>Min height: {stats.min}</li>
         </ul>
+
+        <TrigViz angle={angle} />
 
         <p>
           <a
