@@ -3,6 +3,8 @@ import { TrigViz } from './TrigViz';
 import './App.css';
 
 function App() {
+  const frameRate = 60 / 1000;
+  const [revolutionsPerMin, setRevolutionsPerMin] = useState(1);
   const [isRunning, setRunning] = useState(false);
   const [buttonLabel, setButtonLabel] = useState('Start the Ferris Wheel');
   const [time, setTime] = useState(0);
@@ -36,7 +38,7 @@ function App() {
   const next = () => {
     console.log('@next');
     let t = timeRef.current;
-    t += 1;
+    t += 1 / 10;
 
     draw(t);
 
@@ -46,16 +48,19 @@ function App() {
 
   useEffect(() => {
     console.log('@useEffect');
-    setInterval(next, 1000);
+    let interval = setInterval(next, 100);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
-  let step = 360 / 60; // 6 degrees per second
-  let angle = (time % 60) * step;
+  let step = (360 / 60) * revolutionsPerMin; // 6 degrees per second
+  let angle = ((time % 60) * step) % 360;
 
   return (
     <div className="App">
       <header className="App-header">
-        <p>Froggy 🐸 Trigonometry</p>
+        <p>Froggy 🐸 Trig</p>
 
         <canvas id="canvas" width="400" height="400">
           What kind of browser are you sporting there? You need a new one!
@@ -67,11 +72,22 @@ function App() {
         </p>
         <p>🐸 stats</p>
         <ul>
-          <li>Time: {time}</li>
+          <li>Time: {time.toFixed(1)}</li>
           <li>Height: {stats.current}</li>
           <li>Max height: {stats.max}</li>
           <li>Min height: {stats.min}</li>
         </ul>
+
+        <p>
+          Revolutions per minute:
+          <input
+            type="number"
+            value={revolutionsPerMin}
+            onChange={(evt) => {
+              setRevolutionsPerMin(evt.target.valueAsNumber);
+            }}
+          />
+        </p>
 
         <TrigViz angle={angle} />
 
