@@ -76,12 +76,6 @@ export function TrigViz(props: TrigVizProps) {
       </text>
       // Arc
       <path
-        d="M0 0 A 5 5, 0, true, 1, 100 100"
-        fill="solid"
-        stroke="white"
-        id="my-arc-0333"
-      />
-      <path
         d={`M${originX} ${originY} A ${radius} ${radius}, 0, ${largeArc}, 1, ${arcToX} ${arcToY}`}
         fill="transparent"
         stroke="white"

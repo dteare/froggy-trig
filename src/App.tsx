@@ -1,13 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { TrigViz } from './TrigViz';
+import draw from './ferris-wheel';
 import './App.css';
+import { FerrisWheel } from './FerrisWheel';
 
 function App() {
   const frameRate = 60 / 1000;
   const [revolutionsPerMin, setRevolutionsPerMin] = useState(1);
   const [isRunning, setRunning] = useState(false);
+  const isRunningRef = useRef(isRunning);
   const [buttonLabel, setButtonLabel] = useState('Start the Ferris Wheel');
   const [time, setTime] = useState(0);
+  const [angle, setAngle] = useState(0);
   const timeRef = useRef(time);
   const [stats, setStats] = useState({ current: 2, min: 1, max: 3 });
   const startStopButton = () => {
@@ -19,31 +23,23 @@ function App() {
       setButtonLabel('Stop');
     }
   };
-  const draw = (t: number) => {
-    console.log('@draw t=', t);
-    const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-
-    if (!ctx) return;
-
-    ctx.fillStyle = 'rgb(200, 0, 0)';
-    ctx.fillRect(10, 10, 50, 50);
-
-    ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
-    ctx.fillRect(30, 30, 50, 50);
-  };
 
   const next = () => {
     console.log('@next');
+
+    if (!isRunningRef.current) return;
+
     let t = timeRef.current;
     t += 1 / 10;
 
-    draw(t);
-
     timeRef.current = t;
     setTime(t);
+
+    let step = (360 / 60) * revolutionsPerMin; // 6 degrees per second
+    let new_angle = ((t % 60) * step) % 360;
+    setAngle(new_angle);
+
+    console.log(`Set angle to ${new_angle}.`);
   };
 
   useEffect(() => {
@@ -54,17 +50,13 @@ function App() {
     };
   }, []);
 
-  let step = (360 / 60) * revolutionsPerMin; // 6 degrees per second
-  let angle = ((time % 60) * step) % 360;
-
   return (
     <div className="App">
       <header className="App-header">
         <p>Froggy 🐸 Trig</p>
 
-        <canvas id="canvas" width="400" height="400">
-          What kind of browser are you sporting there? You need a new one!
-        </canvas>
+        <FerrisWheel angle={angle} />
+
         <p>
           <button type="button" onClick={() => startStopButton()}>
             {buttonLabel}
