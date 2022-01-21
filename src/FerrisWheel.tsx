@@ -28,6 +28,9 @@ var points = [];
 function drawFerrisWheel(rotateAngle: number) {
   console.log(`@drawFerrisWheel w/ angle ${rotateAngle}`);
 
+  // The rest of the app thinks in degrees. We're in radians.
+  rotateAngle = (rotateAngle * Math.PI) / 180;
+
   var cvs = document.getElementById('canvas2');
   var ctx = cvs.getContext('2d');
 

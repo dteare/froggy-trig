@@ -11,7 +11,7 @@ type TrigVizProps = {
 };
 
 export function TrigViz(props: TrigVizProps) {
-  let angle = props.angle;
+  let angle = 360 - props.angle;
   let originX = 200;
   let originY = 100;
   let radius = 100;

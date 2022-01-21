@@ -27,7 +27,7 @@ function App() {
   const next = () => {
     console.log(`@next (${isRunning} / ${isRunningRef.current})`);
 
-    // Never sees the updated value to isRunning due to the closure, but the reference doesn't help... 🤔
+    // isRunning never sees updated values due to the closure, but the reference doesn't help... 🤔
     // if (!isRunningRef.current) return;
 
     let t = timeRef.current;
