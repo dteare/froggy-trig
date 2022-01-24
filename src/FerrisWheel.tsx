@@ -34,8 +34,8 @@ function drawFerrisWheel(rotateAngle: number) {
   var cvs = document.getElementById('canvas2');
   var ctx = cvs.getContext('2d');
 
-  var W = (cvs.width = window.innerWidth);
-  var H = (cvs.height = window.innerHeight);
+  var W = cvs.width / 2;
+  var H = cvs.height;
 
   target.x = W / 2;
   target.y = H / 2;
@@ -141,8 +141,8 @@ function drawFerrisWheel(rotateAngle: number) {
   }
 
   function reset() {
-    W = cvs.width = window.innerWidth;
-    H = cvs.height = window.innerHeight;
+    W = cvs.width;
+    H = cvs.height;
 
     target.x = W / 2;
     target.y = H / 2;

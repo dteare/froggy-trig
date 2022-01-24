@@ -56,20 +56,26 @@ function App() {
       <header className="App-header">
         <p>Froggy 🐸 Trig</p>
 
-        <FerrisWheel angle={angle} />
+        <div className='container'>
+          <FerrisWheel angle={angle} />
+        
+          <TrigViz angle={(angle+180) % 360} />
+
+          <div className='stats'>🐸 stats
+          <ul>
+            <li>Time: {time.toFixed(1)}</li>
+            <li>Height: {stats.current}</li>
+            <li>Max height: {stats.max}</li>
+            <li>Min height: {stats.min}</li>
+          </ul>
+          </div>
+        </div>
 
         <p>
           <button type="button" onClick={() => startStopButton()}>
             {buttonLabel}
           </button>
         </p>
-        <p>🐸 stats</p>
-        <ul>
-          <li>Time: {time.toFixed(1)}</li>
-          <li>Height: {stats.current}</li>
-          <li>Max height: {stats.max}</li>
-          <li>Min height: {stats.min}</li>
-        </ul>
 
         <p>
           Revolutions per minute:
@@ -82,7 +88,6 @@ function App() {
           />
         </p>
 
-        <TrigViz angle={angle} />
 
         <p>
           <a

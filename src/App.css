@@ -41,6 +41,20 @@ button {
   font-size: calc(10px + 2vmin);
 }
 
-#canvas {
-  background-color: grey;
+#canvas2 {
+  border: solid 1px white;
+  width: 30%;
+  height: 80%;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  border: solid 1px red;
+  display: grid;
+  grid-template-columns: 2f 1f 1f;
+}
+
+.stats ul {
+  list-style-type: none;
 }
